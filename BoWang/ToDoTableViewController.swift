@@ -79,7 +79,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
                 //print("Item inserted, id: ")
             //}
         //}
-        
+ //read data from table2
         
         itemTable.read { (result, error) in
             if let err = error {
