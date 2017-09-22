@@ -23,6 +23,8 @@
 		A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */; };
 		A3BBD77D1C05181600DD0DB0 /* MicrosoftAzureMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3BBD77C1C05181600DD0DB0 /* MicrosoftAzureMobile.framework */; };
 		E9961BE91F7382A1008F29A9 /* QSTodoDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9961BE71F7382A1008F29A9 /* QSTodoDataModel.xcdatamodeld */; };
+		E9961BEB1F73C3CB008F29A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9961BEA1F73C3CB008F29A9 /* LoginViewController.swift */; };
+		E9961BED1F73C569008F29A9 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9961BEC1F73C569008F29A9 /* signupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A3BBD77C1C05181600DD0DB0 /* MicrosoftAzureMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftAzureMobile.framework; sourceTree = "<group>"; };
 		E9961BE81F7382A1008F29A9 /* QSTodoDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QSTodoDataModel.xcdatamodel; sourceTree = "<group>"; };
+		E9961BEA1F73C3CB008F29A9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E9961BEC1F73C569008F29A9 /* signupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 				A2D9CBE51943CB520017F096 /* frameworks */,
 				A2D9CBE81943D1340017F096 /* BoWang-Bridging-Header.h */,
 				A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */,
+				E9961BEA1F73C3CB008F29A9 /* LoginViewController.swift */,
+				E9961BEC1F73C569008F29A9 /* signupViewController.swift */,
 			);
 			path = BoWang;
 			sourceTree = "<group>";
@@ -202,7 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9961BEB1F73C3CB008F29A9 /* LoginViewController.swift in Sources */,
 				2D19F4CE1F701E4D003B442B /* FourthViewController.swift in Sources */,
+				E9961BED1F73C569008F29A9 /* signupViewController.swift in Sources */,
 				E9961BE91F7382A1008F29A9 /* QSTodoDataModel.xcdatamodeld in Sources */,
 				2D19F4CD1F701E4D003B442B /* FirstViewController.swift in Sources */,
 				A2E767C6194594DC00869113 /* ToDoItemViewController.swift in Sources */,

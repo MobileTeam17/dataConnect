@@ -11,7 +11,7 @@
         <!--Signup-->
         <scene sceneID="kpO-FR-rTs">
             <objects>
-                <viewController title="Signup" id="PJH-gV-OT3" sceneMemberID="viewController">
+                <viewController title="Signup" id="PJH-gV-OT3" customClass="signupViewController" customModule="BoWang" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dET-yI-EbB"/>
                         <viewControllerLayoutGuide type="bottom" id="yZb-pa-HQc"/>
@@ -70,7 +70,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <segue destination="bpu-CD-viY" kind="presentation" id="QgV-zC-kre"/>
+                                    <action selector="signupButton:" destination="PJH-gV-OT3" eventType="touchUpInside" id="JEL-XQ-9GQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzD-6V-5eK">
@@ -85,6 +85,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="UqT-Er-pX5"/>
+                    <connections>
+                        <outlet property="emailText" destination="qo1-Nq-zql" id="ay6-KM-NKb"/>
+                        <outlet property="passwordText" destination="yX6-jb-wAu" id="fwM-2i-IwV"/>
+                        <outlet property="repeatPasswordText" destination="qCC-kl-HcV" id="YcO-hf-gWc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFj-FU-acS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -463,7 +468,7 @@
         <!--Login-->
         <scene sceneID="URd-XJ-uMD">
             <objects>
-                <viewController title="Login" id="VgQ-QI-FY7" sceneMemberID="viewController">
+                <viewController title="Login" id="VgQ-QI-FY7" customClass="LoginViewController" customModule="BoWang" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uTv-p2-tAu"/>
                         <viewControllerLayoutGuide type="bottom" id="vpQ-ZN-tgW"/>
@@ -498,7 +503,8 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
-                                    <segue destination="UNn-wi-4FA" kind="presentation" id="UNz-rJ-dww"/>
+                                    <action selector="loginButton:" destination="VgQ-QI-FY7" eventType="touchUpInside" id="YaC-wP-wCn"/>
+                                    <segue destination="UNn-wi-4FA" kind="presentation" id="OLC-7y-Mw1"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="S3O-Ct-v9z">
@@ -529,14 +535,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiD-ak-UVD">
+                                <rect key="frame" x="16" y="478" width="359" height="169"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="跳过login，进入主界面"/>
+                                <connections>
+                                    <segue destination="UNn-wi-4FA" kind="presentation" id="pNJ-w3-eAe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="M4a-PB-jMB"/>
+                    <connections>
+                        <outlet property="emailText" destination="S3O-Ct-v9z" id="ofz-tt-rst"/>
+                        <outlet property="passwordText" destination="x3Y-kI-dYN" id="kxO-eR-Mjf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YeR-Af-3rR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="-334"/>
+            <point key="canvasLocation" x="1612" y="-334.18290854572717"/>
         </scene>
         <!--Signup controller-->
         <scene sceneID="U0z-VC-Ydu">
@@ -655,8 +674,8 @@
         <image name="second-1" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UNz-rJ-dww"/>
+        <segue reference="pNJ-w3-eAe"/>
         <segue reference="v4K-Yu-zAd"/>
-        <segue reference="nAx-kr-16V"/>
+        <segue reference="9Ig-U6-U3y"/>
     </inferredMetricsTieBreakers>
 </document>
