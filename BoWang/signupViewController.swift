@@ -17,6 +17,14 @@ class signupViewController: UIViewController {
     
     @IBOutlet weak var repeatPasswordText: UITextField!
     
+    var itemTable = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "login")
+    
+    var dicClient = [String:Any]()
+    var dicClient2 = [String:Any]()
+    var list = NSMutableArray()
+    var list2 = NSMutableArray()
+    var array:[AnyObject] = []
+    var array2:[AnyObject] = []
     
     @IBAction func signupButton(_ sender: Any)
     {
@@ -39,15 +47,6 @@ class signupViewController: UIViewController {
             return
         }
         
-        // check exist email
-        
-        /*        if (userEmail == registedEmail) {
-         
-         displayMyAlertMessage(userMessage: "email already exist")
-         
-         return
-         }
-         */
         
         //check if password match
         
@@ -66,6 +65,34 @@ class signupViewController: UIViewController {
         UserDefaults.standard.set(userEmail, forKey: "userRegistEmail")
         UserDefaults.standard.set(userPassword, forKey: "userRegistPassword")
         UserDefaults.standard.synchronize()
+        
+        
+        //print("bbbbbbbbbbbbb: ", self.list)
+        self.dicClient["email"] = userEmail
+        self.dicClient["password"] = userPassword
+        self.dicClient2["email"] = userEmail
+        //list.add(dicClient)
+        //list2.add(dicClient2)
+        array.append(dicClient as AnyObject)
+        array2.append(dicClient2 as AnyObject)
+        
+        UserDefaults.standard.set(array, forKey: "theUserData")
+        UserDefaults.standard.set(array2, forKey: "theEmailData")
+        
+        
+        
+        let itemToInsert = ["email": userEmail, "password": userPassword] as [String : Any]
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        
+        self.itemTable.insert(itemToInsert) {
+            
+            (item, error) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            if error != nil {
+                print("Error: " + (error! as NSError).description)
+            }
+        }
         
         
         
@@ -109,6 +136,10 @@ class signupViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        list =  UserDefaults.standard.array(forKey: "theUserData") as! NSMutableArray
+        print("aaaaaaaaaaa: ", UserDefaults.standard.array(forKey: "theUserData"))
+        print("bbbbbbbbbbbbb: ", UserDefaults.standard.array(forKey: "theEmailData"))
+        list2 = UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray
 
         // Do any additional setup after loading the view.
     }

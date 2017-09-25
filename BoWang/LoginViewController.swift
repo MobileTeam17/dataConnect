@@ -8,10 +8,14 @@
 
 
 //test for uploader at github 
-
+import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
+protocol ToDoItemDelegate4 {
+    func didSaveItem(_ theUser: String, _ bookId: String)
+}
+
+class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var emailText: UITextField!
     
@@ -21,13 +25,37 @@ class LoginViewController: UIViewController {
 
     
     
+    var itemTable2 = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "book_users")
+    
+    var itemTable = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "login")
+    var bookIdList = NSMutableArray()
+        
+    var loginName = ""
+    var list = NSMutableArray()
+    var list2 = NSMutableArray()
+    var dicClient = [String:Any]()
+    var dicClient2 = [String:Any]()
+    
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+    }
+    
+
 
     
-        
-        
     
-    @IBAction func loginButton(_ sender: Any) {
-        
+    @IBAction func loginButton(_ sender: UIButton) {
+        viewDidLoad()
+        //print("bbbbbbbbbbbbb: ", UserDefaults.standard.array(forKey: "theEmailData"))
+        if UserDefaults.standard.array(forKey: "theUserData") != nil{
+        list =  UserDefaults.standard.array(forKey: "theUserData") as! NSMutableArray
+        }
+        if UserDefaults.standard.array(forKey: "theEmailData") != nil{
+        list2 = UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray
+        }
         
         let userEmail = emailText.text
         let userPassword = passwordText.text
@@ -35,49 +63,54 @@ class LoginViewController: UIViewController {
         
         
         //send 'email' and 'password' to server
-        
         //here just read email and password
+        self.dicClient["email"] = userEmail
+        self.dicClient["password"] = userPassword
+        self.dicClient2["email"] = userEmail
         
-        let userEmailStored = UserDefaults.standard.string(forKey: "userRegistEmail")
-        
-        let userPasswordStored = UserDefaults.standard.string(forKey: "userRegistPassword")
-        
-        
-        
-        if (userEmailStored == userEmail) {
-            if (userPasswordStored == userPassword) {
-                
-                // login is successful
+        if (UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray)
+            .contains(dicClient2){
+            if (UserDefaults.standard.array(forKey: "theUserData") as! NSMutableArray).contains(dicClient){
                 
                 UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                 UserDefaults.standard.synchronize()
                 
-                //displayMyAlertMessage(userMessage: "success")
-                
-
-                
-                
             }
-                
-            else {
-                
+            else{
                 displayMyAlertMessage(userMessage: "Wrong Password!")
-
-                //displayMyAlertMessage(userMessage: "worong password")
                 
                 return
             }
             
             
         }
-            
         else {
             displayMyAlertMessage(userMessage: "不存在email")
             
             return
         }
-
+        
+        UserDefaults.standard.set(userEmail, forKey: "userRegistEmail")
+        
+        performSegue(withIdentifier: "login", sender: nil)
+        
+        
+        
     }
+    
+ 
+    
+    
+
+    
+    func getBookList() {
+        
+        UserDefaults.standard.set(bookIdList, forKey: "theStoreListOfBook")
+        print("bbbbbbbbbbbbb: ", self.bookIdList)
+        
+    }
+    
+
     
     
     func displayMyAlertMessage(userMessage: String)  {
@@ -90,26 +123,11 @@ class LoginViewController: UIViewController {
         self.present(myAlert, animated: true, completion: nil)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

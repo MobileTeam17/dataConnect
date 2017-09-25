@@ -18,12 +18,23 @@ import Foundation
 import UIKit
 
 protocol ToDoItemDelegate {
-    func didSaveItem(_ text : String)
+    func didSaveItem(_ label: String, _ theCost: String, _ describ: String)
 }
 
 class ToDoItemViewController: UIViewController,  UIBarPositioningDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var text: UITextField!
+    
+    
+    
+    @IBOutlet weak var labels: UITextField!
+    
+    @IBOutlet weak var theCost: UITextField!
+    
+    @IBOutlet weak var describ: UITextField!
+    
+    @IBOutlet weak var picture: UITextField!
+    
+    @IBOutlet weak var freeOne: UITextField!
     
     var delegate : ToDoItemDelegate?
     
@@ -31,18 +42,52 @@ class ToDoItemViewController: UIViewController,  UIBarPositioningDelegate, UITex
     {
         super.viewDidLoad()
         
-        self.text.delegate = self
-        self.text.becomeFirstResponder()
+        //self.labels.delegate = self
+        //self.labels.becomeFirstResponder()
     }
     
-    @IBAction func cancelPressed(_ sender : UIBarButtonItem) {
-        self.text.resignFirstResponder()
+    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        self.labels.resignFirstResponder()
+        //self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func savePressed(_ sender : UIBarButtonItem) {
-        saveItem()
-        self.text.resignFirstResponder()
+    
+    @IBAction func savePressed(_ sender: UIBarButtonItem) {
+        
+        let labels = self.labels.text
+        let theCost = self.theCost.text
+        let describ = self.describ.text
+        let picture = self.picture.text
+        
+        if (labels?.isEmpty)! || (theCost?.isEmpty)! || (describ?.isEmpty)! || (picture?.isEmpty)! {
+            
+            //display an alert message
+            
+            displayMyAlertMessage(userMessage: "all filed are required")
+            
+            return
+        }
+        
+        //check if password match
+        
+        if (Int(theCost!) == nil) {
+            
+            //display an alert message
+            
+            displayMyAlertMessage(userMessage: "The cost should be number")
+            
+            return
+        }
+            
+        else{
+            saveItem()
+            self.labels.resignFirstResponder()
+            //self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
+    
     
     // Textfield
     
@@ -64,12 +109,28 @@ class ToDoItemViewController: UIViewController,  UIBarPositioningDelegate, UITex
         return true
     }
     
+    func displayMyAlertMessage(userMessage: String)  {
+        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil)
+        
+        myAlert.addAction(okAction)
+        
+        self.present(myAlert, animated: true, completion: nil)
+    }
+    
     // Delegate
     
     func saveItem()
     {
-        if let text = self.text.text {
-            self.delegate?.didSaveItem(text)
+        //let theCost = self.theCost.text
+        //let describ = self.describ.text
+        if let theCost = self.theCost.text,
+            let labels = self.labels.text,
+            let describ = self.describ.text
+        {
+            self.delegate?.didSaveItem(labels,theCost,describ)
+            
         }
     }
 }
