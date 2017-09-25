@@ -18,6 +18,7 @@ class signupViewController: UIViewController {
     @IBOutlet weak var repeatPasswordText: UITextField!
     
     var itemTable = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "login")
+    var delegate = UIApplication.shared.delegate as! AppDelegate
     
     var dicClient = [String:Any]()
     var dicClient2 = [String:Any]()
@@ -29,13 +30,9 @@ class signupViewController: UIViewController {
     @IBAction func signupButton(_ sender: Any)
     {
         
-        
-        
         let userEmail = emailText.text
         let userPassword = passwordText.text
         let userRepeatPassword = repeatPasswordText.text
-        
-        
         
         //check empty
         if (userEmail?.isEmpty)! || (userPassword?.isEmpty)! || (userRepeatPassword?.isEmpty)! {
@@ -71,8 +68,7 @@ class signupViewController: UIViewController {
         self.dicClient["email"] = userEmail
         self.dicClient["password"] = userPassword
         self.dicClient2["email"] = userEmail
-        //list.add(dicClient)
-        //list2.add(dicClient2)
+
         array.append(dicClient as AnyObject)
         array2.append(dicClient2 as AnyObject)
         
@@ -95,9 +91,6 @@ class signupViewController: UIViewController {
         }
         
         
-        
-        
-        
         //display alert message with confimation
         
         let myAlert = UIAlertController(title:"Alert", message: "registration is successful, thank you", preferredStyle: UIAlertControllerStyle.alert)
@@ -109,15 +102,8 @@ class signupViewController: UIViewController {
         
         myAlert.addAction(okAction)
         self.present( myAlert, animated: true, completion: nil)
-        
-        
-        
-        
-        
-        
+
     }
-    
-    
     
     func displayMyAlertMessage(userMessage: String)  {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
@@ -130,9 +116,7 @@ class signupViewController: UIViewController {
     }
     
         
-        
-        
-
+ 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,7 +125,6 @@ class signupViewController: UIViewController {
         print("bbbbbbbbbbbbb: ", UserDefaults.standard.array(forKey: "theEmailData"))
         list2 = UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,15 +132,5 @@ class signupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -135,9 +135,7 @@ class billListAndDetail: UITableViewController, ToDoItemDelegate  {
         cell.textLabel?.text =  client["label"] as! String
         
         let str = "the cost is:  \(client["theCost"]!) $ "
-        
         var str2 = "   "+client["createdAt"]!
-        
         var str3 = "  paid by "+client["spendBy"]!
         
         str2.remove(at: str2.index(before: str2.endIndex))
@@ -153,9 +151,9 @@ class billListAndDetail: UITableViewController, ToDoItemDelegate  {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete
         {
-            self.list.remove(at: indexPath.row)
-            
-            
+            while self.list.contains(self.list.index(of: indexPath.row))   {
+                self.list.remove(at: indexPath.row)
+            }
             var item = [String:Any]()
             item = self.list.object(at: indexPath.row) as! [String : Any]
             
@@ -166,7 +164,6 @@ class billListAndDetail: UITableViewController, ToDoItemDelegate  {
                     print("ERROR ", err)
                 } else {
                     print("Todo Item ID: ", id)
-                    
                 }
                 
             }
@@ -176,14 +173,9 @@ class billListAndDetail: UITableViewController, ToDoItemDelegate  {
                     print("ERROR ", err)
                 } else {
                     print("Todo Item ID: ", id)
-                    
                 }
-                
             }
-            
-            
         }
-        
         
         viewDidLoad()
         viewDidLoad()

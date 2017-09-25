@@ -25,7 +25,6 @@ import CoreData
 
 class accountBookList: UITableViewController, ToDoItemDelegate3 {
     
-    var table : MSSyncTable?
     var store : MSCoreDataStore?
     var list = NSMutableArray()
     var dicClient = [String:Any]()
@@ -43,7 +42,7 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         refresh = UIRefreshControl()
-        // Do any additional setup after loading the view, typically from a nib.
+
         itemTable2.read { (result, error) in
             if let err = error {
                 print("ERROR ", err)
@@ -100,6 +99,9 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
     
     func getBookList() {
         list = NSMutableArray()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let client2 = delegate.client
+        itemTable = client2.table(withName: "AccountBook")
         itemTable.read { (result, error) in
             if let err = error {
                 print("ERROR ", err)
@@ -257,7 +259,6 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
         
         
         self.list.add(self.dicClient)
-        print("whether insert or not : ", list.count)
         print("the list is : ", self.list)
         
         Thread.sleep(forTimeInterval: 2)

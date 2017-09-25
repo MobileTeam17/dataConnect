@@ -36,41 +36,97 @@ class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFi
     var dicClient = [String:Any]()
     var dicClient2 = [String:Any]()
     
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        print("99999999999999999999999999")
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let client = delegate.client
+        itemTable = client.table(withName: "login")
+        
+        itemTable.read { (result, error) in
+            if let err = error {
+                print("ERROR ", err)
+            } else if let items = result?.items {
+                for item in items {
+                    if !self.list.contains("\(item["email"]!)"){
+                        self.list.add("\(item["email"]!)")
+                    }
+                    
+                    self.dicClient["email"] = "\(item["email"]!)"
+                    self.dicClient["password"] = "\(item["password"]!)"
+                    
+                    if !self.list2.contains(self.dicClient){
+                        self.list2.add(self.dicClient)
+                    }
+                }
+            }
+        }
+        UserDefaults.standard.set(list2, forKey: "theUserData")
+        UserDefaults.standard.set(list, forKey: "theEmailData")
+        print("ffffffffffff : ", list)
+        print("nnnnnnnnnnnn : ", list2)
+        
+
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidLoad()
+        print("99999999999999999999999999")
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let client = delegate.client
+        itemTable = client.table(withName: "login")
+        
+        itemTable.read { (result, error) in
+            if let err = error {
+                print("ERROR ", err)
+            } else if let items = result?.items {
+                for item in items {
+                    if !self.list.contains("\(item["email"]!)"){
+                        self.list.add("\(item["email"]!)")
+                    }
+                    
+                    self.dicClient["email"] = "\(item["email"]!)"
+                    self.dicClient["password"] = "\(item["password"]!)"
+                    
+                    if !self.list2.contains(self.dicClient){
+                        self.list2.add(self.dicClient)
+                    }
+                }
+            }
+        }
+        UserDefaults.standard.set(list2, forKey: "theUserData")
+        UserDefaults.standard.set(list, forKey: "theEmailData")
 
+    }
 
     
     
     @IBAction func loginButton(_ sender: UIButton) {
         viewDidLoad()
-        //print("bbbbbbbbbbbbb: ", UserDefaults.standard.array(forKey: "theEmailData"))
-        if UserDefaults.standard.array(forKey: "theUserData") != nil{
-        list =  UserDefaults.standard.array(forKey: "theUserData") as! NSMutableArray
-        }
-        if UserDefaults.standard.array(forKey: "theEmailData") != nil{
-        list2 = UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray
-        }
+        self.setNeedsFocusUpdate()
+        //if UserDefaults.standard.array(forKey: "theEmailData") != nil{
+            //list = UserDefaults.standard.array(forKey: "theEmailData")! as! NSMutableArray
+        //}
+        //if UserDefaults.standard.array(forKey: "theUserData") != nil{
+            //list2 = UserDefaults.standard.array(forKey: "theUserData")! as! NSMutableArray
+        //}
+        
         
         let userEmail = emailText.text
         let userPassword = passwordText.text
-        
-        
         
         //send 'email' and 'password' to server
         //here just read email and password
         self.dicClient["email"] = userEmail
         self.dicClient["password"] = userPassword
-        self.dicClient2["email"] = userEmail
-        
-        if (UserDefaults.standard.array(forKey: "theEmailData") as! NSMutableArray)
-            .contains(dicClient2){
-            if (UserDefaults.standard.array(forKey: "theUserData") as! NSMutableArray).contains(dicClient){
+        print("the list isssssssss : ", list)
+        print("the list2 isrrrrrrrrrrrrr : ", list2)
+        if list.contains(userEmail){
+            if list2.contains(dicClient){
                 
                 UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
                 UserDefaults.standard.synchronize()
@@ -81,11 +137,9 @@ class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFi
                 
                 return
             }
-            
-            
         }
         else {
-            displayMyAlertMessage(userMessage: "不存在email")
+            displayMyAlertMessage(userMessage: "The name does not exist!")
             
             return
         }
@@ -94,25 +148,10 @@ class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFi
         
         performSegue(withIdentifier: "login", sender: nil)
         
-        
-        
-    }
-    
- 
-    
-    
 
-    
-    func getBookList() {
-        
-        UserDefaults.standard.set(bookIdList, forKey: "theStoreListOfBook")
-        print("bbbbbbbbbbbbb: ", self.bookIdList)
-        
     }
     
 
-    
-    
     func displayMyAlertMessage(userMessage: String)  {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
         
