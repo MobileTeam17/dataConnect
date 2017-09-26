@@ -36,7 +36,7 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
     var bookIdList = NSMutableArray()
     var itemTable2 = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "book_users")
     var itemTable = (UIApplication.shared.delegate as! AppDelegate).client.table(withName: "AccountBook")
-    var maxmumBookId = UserDefaults.standard.integer(forKey: "maxmumBookId")
+    var maxmumBookId = 0
 
     
     override func viewDidLoad() {
@@ -51,11 +51,11 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
                     if "\(item["theUser"]!)" == self.loginName! &&
                     !self.bookIdList.contains("\(item["bookId"]!)"){
                         self.bookIdList.add("\(item["bookId"]!)")
-                        print("234456677888888", self.bookIdList)
+
                     }
                 }
+                print("234456677888888", self.bookIdList)
                 self.tableView.reloadData()
-                
             }
         }
 
@@ -70,14 +70,14 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
                     if "\(item["owner"]!)" == self.loginName! &&
                     !self.bookIdList.contains("\(item["id"]!)"){
                         self.bookIdList.add("\(item["id"]!)")
-                        print("8888888888888888", self.bookIdList)
+                        
                     }
                 }
+                print("8888888888888888", self.bookIdList)
                 self.tableView.reloadData()
             
             }
-            
-    }
+        }
     
 
         getBookList()
@@ -194,8 +194,6 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
         theValue = client["bookName"] as! String
         selectedBookId = client["id"]!
         
-        // theValue = (tableView.dequeueReusableCell(withIdentifier: "Cell", for:
-        //tableView.indexPathForSelectedRow!).textLabel?.text)!
         UserDefaults.standard.set(selectedBookId, forKey: loginName!)
         performSegue(withIdentifier: "billListAndDetail", sender: nil)
         
@@ -208,6 +206,8 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
         if segue.identifier == "addBook" {
             let todoController = segue.destination as! addNewBook
             todoController.delegate = self
+            getMaxBookId()
+            print("12121212112112 : ", maxmumBookId)
         }
         
         if(segue.identifier == "billListAndDetail") {
@@ -222,7 +222,24 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+    func getMaxBookId(){
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let client = delegate.client
+        let itemTable3 = client.table(withName: "AccountBook")
+        var maxBookId = 0
+        itemTable.read { (result, error) in
+            if let err = error {
+                print("ERROR ", err)
+            } else if let items = result?.items {
+                for item in items {
+                    if Int("\(item["id"]!)")! > maxBookId{
+                        maxBookId = Int("\(item["id"]!)")!
+                    }
+                }
+            }
+            self.maxmumBookId = maxBookId
+        }
+    }
     
     // MARK: - ToDoItemDelegate
     
@@ -234,15 +251,11 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
             return
         }
         
-        //UserDefaults.standard.set(161, forKey: "maxmumBookId")
-        maxmumBookId = UserDefaults.standard.integer(forKey: "maxmumBookId")
 
         // We set created at to now, so it will sort as we expect it to post the push/pull
         let itemToInsert = ["id": String(maxmumBookId+1), "bookName": newBookName, "owner": self.loginName, "__createdAt": Date()] as [String : Any]
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        
-        UserDefaults.standard.set(maxmumBookId+1, forKey: "maxmumBookId")
         self.itemTable.insert(itemToInsert) {
             
             (item, error) in
@@ -260,7 +273,7 @@ class accountBookList: UITableViewController, ToDoItemDelegate3 {
         
         self.list.add(self.dicClient)
         print("the list is : ", self.list)
-        
+        print("the max Book Id is : ", maxmumBookId)
         Thread.sleep(forTimeInterval: 2)
         
         viewDidLoad()

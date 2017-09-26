@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		2D162A621F77A34F003BC2E1 /* shareBookId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D162A611F77A34F003BC2E1 /* shareBookId.swift */; };
 		2D1694141F78B2BC00825E49 /* addNewBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1694131F78B2BC00825E49 /* addNewBook.swift */; };
-		2D19F4CD1F701E4D003B442B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19F4C91F701E4D003B442B /* FirstViewController.swift */; };
-		2D19F4CE1F701E4D003B442B /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19F4CA1F701E4D003B442B /* FourthViewController.swift */; };
-		2D19F4CF1F701E4D003B442B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19F4CB1F701E4D003B442B /* SecondViewController.swift */; };
-		2D19F4D01F701E4D003B442B /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D19F4CC1F701E4D003B442B /* ThirdViewController.swift */; };
 		2D1E65991F75FE1700AF1ABC /* userListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E65981F75FE1700AF1ABC /* userListPage.swift */; };
 		2D1E659D1F7662DD00AF1ABC /* addNewUserToBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1E659C1F7662DD00AF1ABC /* addNewUserToBook.swift */; };
 		2D8A540F1F75363B002BDDC2 /* billListAndDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8A540E1F75363B002BDDC2 /* billListAndDetail.swift */; };
@@ -34,10 +30,6 @@
 /* Begin PBXFileReference section */
 		2D162A611F77A34F003BC2E1 /* shareBookId.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shareBookId.swift; sourceTree = "<group>"; };
 		2D1694131F78B2BC00825E49 /* addNewBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addNewBook.swift; sourceTree = "<group>"; };
-		2D19F4C91F701E4D003B442B /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2D19F4CA1F701E4D003B442B /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
-		2D19F4CB1F701E4D003B442B /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		2D19F4CC1F701E4D003B442B /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		2D1E65981F75FE1700AF1ABC /* userListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userListPage.swift; sourceTree = "<group>"; };
 		2D1E659C1F7662DD00AF1ABC /* addNewUserToBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addNewUserToBook.swift; sourceTree = "<group>"; };
 		2D8A540E1F75363B002BDDC2 /* billListAndDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = billListAndDetail.swift; path = ../billListAndDetail.swift; sourceTree = "<group>"; };
@@ -106,10 +98,6 @@
 			children = (
 				2D8A540E1F75363B002BDDC2 /* billListAndDetail.swift */,
 				E9961BE71F7382A1008F29A9 /* QSTodoDataModel.xcdatamodeld */,
-				2D19F4C91F701E4D003B442B /* FirstViewController.swift */,
-				2D19F4CA1F701E4D003B442B /* FourthViewController.swift */,
-				2D19F4CB1F701E4D003B442B /* SecondViewController.swift */,
-				2D19F4CC1F701E4D003B442B /* ThirdViewController.swift */,
 				A2D9CBC31943C2540017F096 /* AppDelegate.swift */,
 				A2D9CBCA1943C2540017F096 /* Main.storyboard */,
 				A2D9CBCD1943C2540017F096 /* Images.xcassets */,
@@ -222,17 +210,13 @@
 			files = (
 				2D8A54111F7545F5002BDDC2 /* accountBookList.swift in Sources */,
 				E9961BEB1F73C3CB008F29A9 /* LoginViewController.swift in Sources */,
-				2D19F4CE1F701E4D003B442B /* FourthViewController.swift in Sources */,
 				2D1E659D1F7662DD00AF1ABC /* addNewUserToBook.swift in Sources */,
 				2D8A540F1F75363B002BDDC2 /* billListAndDetail.swift in Sources */,
 				E9961BED1F73C569008F29A9 /* signupViewController.swift in Sources */,
 				E9961BE91F7382A1008F29A9 /* QSTodoDataModel.xcdatamodeld in Sources */,
 				2D162A621F77A34F003BC2E1 /* shareBookId.swift in Sources */,
-				2D19F4CD1F701E4D003B442B /* FirstViewController.swift in Sources */,
-				2D19F4CF1F701E4D003B442B /* SecondViewController.swift in Sources */,
 				2D1694141F78B2BC00825E49 /* addNewBook.swift in Sources */,
 				2D8A54131F755DE1002BDDC2 /* addNewBill.swift in Sources */,
-				2D19F4D01F701E4D003B442B /* ThirdViewController.swift in Sources */,
 				2D1E65991F75FE1700AF1ABC /* userListPage.swift in Sources */,
 				A2D9CBC41943C2540017F096 /* AppDelegate.swift in Sources */,
 			);

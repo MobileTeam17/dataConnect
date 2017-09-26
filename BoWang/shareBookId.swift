@@ -54,8 +54,8 @@ class shareBookId: UIViewController,  UIBarPositioningDelegate, UITextFieldDeleg
     @IBOutlet weak var label: UILabel!
     
     
-    var bookId = UserDefaults.standard.string(forKey: "selectedBookId")!
-    
+    var bookId = ""
+    var loginName = UserDefaults.standard.string(forKey: "userRegistEmail")
     
 
     override func viewDidLoad()
@@ -63,6 +63,11 @@ class shareBookId: UIViewController,  UIBarPositioningDelegate, UITextFieldDeleg
         super.viewDidLoad()
         if UserDefaults.standard.string(forKey: "selectedBookId") != nil{
             bookId = UserDefaults.standard.string(forKey: "selectedBookId")!
+        }
+        else{
+            if UserDefaults.standard.string(forKey: loginName!) != nil{
+                bookId = UserDefaults.standard.string(forKey: loginName!)!
+            }
         }
         
         label.text = "  The account book id is:    \(bookId) "

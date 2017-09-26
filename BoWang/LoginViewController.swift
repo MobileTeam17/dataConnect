@@ -33,6 +33,7 @@ class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFi
     var loginName = ""
     var list = NSMutableArray()
     var list2 = NSMutableArray()
+    var list3 = NSMutableArray()
     var dicClient = [String:Any]()
     var dicClient2 = [String:Any]()
     
@@ -68,13 +69,13 @@ class LoginViewController: UIViewController,  UIBarPositioningDelegate, UITextFi
         print("ffffffffffff : ", list)
         print("nnnnnnnnnnnn : ", list2)
         
+        
 
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
-        print("99999999999999999999999999")
         
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let client = delegate.client
